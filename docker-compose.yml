@@ -1,0 +1,27 @@
+
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: microservice
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  api-service:
+    build: ./api-service
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+
+  auth-service:
+    build: ./auth-service
+    ports:
+      - "5001:5001"
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"

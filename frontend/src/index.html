@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Frontend</title>
+</head>
+<body>
+    <h1>Items</h1>
+    <ul id="items"></ul>
+    <script>
+        fetch('http://localhost:5000/items')
+            .then(response => response.json())
+            .then(data => {
+                const itemsList = document.getElementById('items');
+                data.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = item.name;
+                    itemsList.appendChild(li);
+                });
+            });
+    </script>
+</body>
+</html>

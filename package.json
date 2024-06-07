@@ -1,0 +1,24 @@
+{
+  "name": "microservice-architecture",
+  "version": "1.0.0",
+  "description": "technical test",
+  "main": "index.js",
+  "dependencies": {
+    "debug": "^4.3.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/demy2014/microservice-architecture.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/demy2014/microservice-architecture/issues"
+  },
+  "homepage": "https://github.com/demy2014/microservice-architecture#readme"
+}

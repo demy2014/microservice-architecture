@@ -10,12 +10,26 @@ This project demonstrates a simple microservice architecture with four component
 ## Project Structure
 microservice-architecture/
 ├── api-service/
+│   ├── app/
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   └── tests/
 ├── frontend/
+│   ├── public/
+│   ├── src/
+│   ├── Dockerfile
+│   └── package.json
 ├── auth-service/
+│   ├── app/
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   └── tests/
 ├── database/
+│   └── init.sql
 ├── docker-compose.yml
 └── .github/
-└── workflows/
+    └── workflows/
+        └── ci-cd.yml
 
 
 ## Getting Started

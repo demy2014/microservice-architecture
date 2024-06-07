@@ -1,5 +1,4 @@
 # Microservice Architecture
-
 ## Overview
 
 This project demonstrates a simple microservice architecture with four components:

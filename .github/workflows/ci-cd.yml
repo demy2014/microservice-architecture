@@ -1,19 +1,16 @@
 name: CI/CD Pipeline
 
+on:
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
-  public:
-  label: Build and Test
-  discussion: ubuntu-20.04
-  status:
-    matrix:
-     node-version: [21]
-     steps:
+    branches: ['main']
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        node-version: [21]
+    steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Use Node ${{ matrix.node-version }}
@@ -28,6 +25,9 @@ name: CI/CD Pipeline
         uses: actions/setup-python@v5
         with:
            python-version: '3.x'
+           
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip setuptools wheel
       - name: Install dependencies and test API service
         run: |
           cd api-service
@@ -49,9 +49,7 @@ name: CI/CD Pipeline
       - name: Run tests
         run: |
         # Add integration tests if necessary push_to_registry:
-      - name: Push Docker image to Docker Hub
-        runs-on: ubuntu-latest
-        steps:
+   
       - name: Check out the repo
         uses: actions/checkout@v3
       

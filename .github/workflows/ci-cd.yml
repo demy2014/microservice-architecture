@@ -6,20 +6,28 @@ name: CI/CD Pipeline
   pull_request:
     branches:
       - main
-jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
-    services:
-      docker:
-        image: 'docker:19.03.12'
-        options: '--privileged'
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v2
+
+  public:
+  label: Build and Test
+  discussion: ubuntu-20.04
+  status:
+    matrix:
+     node-version: [21]
+     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Use Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
         with:
-          python-version: '3.9'
+          node-version: ${{ matrix.node-version }}
+
+      - name: Check out the repo
+        uses: actions/checkout@v4
+        
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+           python-version: '3.x'
       - name: Install dependencies and test API service
         run: |
           cd api-service
@@ -40,12 +48,10 @@ jobs:
           docker-compose up -d
       - name: Run tests
         run: |
-        # Add integration tests if necessary 
-  
-  push_to_registry:
-    name: Push Docker image to Docker Hub
-    runs-on: ubuntu-latest
-    steps:
+        # Add integration tests if necessary push_to_registry:
+      - name: Push Docker image to Docker Hub
+        runs-on: ubuntu-latest
+        steps:
       - name: Check out the repo
         uses: actions/checkout@v3
       
